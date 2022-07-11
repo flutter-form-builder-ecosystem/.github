@@ -14,7 +14,7 @@ Connected to #???
 
 ## To Do
 
-- [ ] Read [contributing guide](https://github.com/flutter-form-builder-ecosystem/<replace>/blob/master/CONTRIBUTING.md)
+- [ ] Read [contributing guide](https://github.com/flutter-form-builder-ecosystem/.github/blob/main/CONTRIBUTING.md)
 - [ ] Check the original issue to confirm it is fully satisfied
 - [ ] Add solution description to help guide reviewers
 - [ ] Add unit test to verify new or fixed behaviour

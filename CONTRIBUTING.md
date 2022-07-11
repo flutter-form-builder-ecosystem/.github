@@ -10,21 +10,21 @@ Please note we have a [code of conduct](https://github.com/flutter-form-builder-
 
 First setup repository to contribute
 
-If you already setup repository, take a look at the issues and take a stab at them. We'll try to make the issue as verbose as possible, so it is easy for you to help. When you're done, create a [Pull Request](https://github.com/flutter-form-builder-ecosystem/.github/compare).
+If you already setup repository, take a look at the issues and take a stab at them. We'll try to make the issue as verbose as possible, so it is easy for you to help. When you're done, create a [Pull Request](https://github.com/flutter-form-builder-ecosystem/<pull-request-package>/compare).
 
-You don't need to code to help us. If you have a suggestion of a feature, see a bug or a thing that should be improved, [open an issue](https://github.com/flutter-form-builder-ecosystem/.github/issues/new/choose) on Github.
+You don't need to code to help us. If you have a suggestion of a feature, see a bug or a thing that should be improved, [open an issue](https://github.com/flutter-form-builder-ecosystem/<issue-package>/issues/new/choose) on Github.
 
 
 ## Setup development environment
 
 ### Copy repository
 
- * Fork `https://github.com/flutter-form-builder-ecosystem/.github/` into your own GitHub account. If you already have a fork and moving to a new computer, make sure you update you fork.
+ * Fork `https://github.com/flutter-form-builder-ecosystem/<package-respository>` into your own GitHub account. If you already have a fork and moving to a new computer, make sure you update you fork.
  * If you haven't configured your machine with an SSH key that's known to github, then
    follow [GitHub's directions](https://help.github.com/articles/generating-ssh-keys/)
    to generate an SSH key.
  * Clone your forked repo on your local development machine: `git clone git@github.com:<your_name_here>/.github.git`
- * Add an upstream to the original repo, so that fetch from the master repository and not your clone: `git remote add upstream git@github.com:flutter-form-builder-ecosystem/.github.git`
+ * Add an upstream to the original repo, so that fetch from the master repository and not your clone: `git remote add upstream git@github.com:flutter-form-builder-ecosystem/<package-respository>.git`
 
 ### Running the example project
 
