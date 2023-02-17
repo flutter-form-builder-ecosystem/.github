@@ -55,7 +55,7 @@ We really appreciate contributions via GitHub pull requests. To contribute take 
    * `git fetch upstream`
    * `git checkout upstream/main -b <name_of_your_branch>`
  * Apply your changes
- * Verify your local changes and fix potential warnings/errors:
+ * Verify your local changes and fix all suggestions:
    * Check formatting: `flutter format .`
    * Run static analyses: `flutter analyze`
    * Run tests: `flutter test`
