@@ -29,6 +29,9 @@ body:
     render: Markdown
   validations:
     required: false
-- type: markdown
+- type: textarea
   attributes:
-    value: '## Images <!-- if available, else delete -->'
+    label: Aditional information
+    placeholder: Can add images, videos, more context, etc.
+  validations:
+    required: false

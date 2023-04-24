@@ -40,21 +40,13 @@ body:
     description: |
       Create a minimal code example to reproduce the issue. 
       Try to not use external packages not related with flutter form builder ecosystem
+      Without this we will unlikely be able to progress on the issue, and because of that
+      we regretfully will have to close it.
     value: |
       <details>
         <summary>Code sample</summary>
 
-      <!--
-            Please create a minimal reproducible sample that shows the problem
-            and attach it below between the lines with the backticks.
-
-            You can use a example code or Flutter sample app
-
-            Without this we will unlikely be able to progress on the issue, and because of that
-            we regretfully will have to close it.
-            
-            Paste the output below inside ``` and ```
-      -->
+      <!-- Paste the output below inside ``` and ``` -->
 
       ```dart
 
@@ -87,6 +79,9 @@ body:
       4. See error...
   validations:
     required: true
-- type: markdown
+- type: textarea
   attributes:
-    value: '## Images <!-- if available, else delete -->'
+    label: Aditional information
+    placeholder: Can add images, videos, more context, etc.
+  validations:
+    required: false
