@@ -1,0 +1,92 @@
+name: 🐞 Bug
+description: Something is crashing or not working as intended
+title: "[Field name or General]: <title>"
+labels: [bug]
+body:
+- type: checkboxes
+  attributes:
+    label: Is there an existing issue for this?
+    description: Please search to see if an issue already exists for the bug you encountered.
+    options:
+    - label: I have searched the existing issues
+      required: true
+- type: input
+  attributes:
+    label: Package/Plugin version
+    description: Version number
+    placeholder: '1.0.0'
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Flutter doctor
+    description: Paste the output of running `flutter doctor -v`
+    value: |
+      <details>
+        <summary>Flutter doctor</summary>
+
+      <!-- Paste the output below inside ``` and ``` -->
+      ```bash
+
+      ```
+
+      </details>
+    render: Markdown
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Minimal code example
+    description: |
+      Create a minimal code example to reproduce the issue. 
+      Try to not use external packages not related with flutter form builder ecosystem
+    value: |
+      <details>
+        <summary>Code sample</summary>
+
+      <!--
+            Please create a minimal reproducible sample that shows the problem
+            and attach it below between the lines with the backticks.
+
+            You can use a example code or Flutter sample app
+
+            Without this we will unlikely be able to progress on the issue, and because of that
+            we regretfully will have to close it.
+            
+            Paste the output below inside ``` and ```
+      -->
+
+      ```dart
+
+      ```
+
+      </details>
+    render: Markdown
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Current Behavior
+    description: A concise description of what you're experiencing.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Expected Behavior
+    description: A concise description of what you expected to happen.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Steps To Reproduce
+    description: Steps to reproduce the behavior.
+    placeholder: |
+      1. In this environment...
+      2. With this config...
+      3. Run '...'
+      4. See error...
+  validations:
+    required: true
+- type: markdown
+  attributes:
+    value: '## Images <!-- if available, else delete -->'
