@@ -1,4 +1,4 @@
-name: 🐞 Bug
+name: 🐛 Bug
 description: Something is crashing or not working as intended
 title: "[Field name or General]: <title>"
 labels: [bug]
