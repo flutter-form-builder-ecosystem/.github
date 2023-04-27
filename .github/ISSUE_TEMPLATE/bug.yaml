@@ -31,7 +31,6 @@ body:
       ```
 
       </details>
-    render: Markdown
   validations:
     required: true
 - type: textarea
@@ -53,7 +52,6 @@ body:
       ```
 
       </details>
-    render: Markdown
   validations:
     required: true
 - type: textarea
