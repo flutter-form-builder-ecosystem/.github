@@ -17,6 +17,17 @@ body:
     placeholder: '1.0.0'
   validations:
     required: true
+- type: checkboxes
+  attributes:
+    label: Platforms
+    description: Please select in whats platform you tested this bug.
+    options:
+    - label: Android
+    - label: iOS
+    - label: Linux
+    - label: MacOS
+    - label: Web
+    - label: Windows
 - type: textarea
   attributes:
     label: Flutter doctor
