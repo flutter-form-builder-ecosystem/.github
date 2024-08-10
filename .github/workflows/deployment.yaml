@@ -3,9 +3,7 @@ name: Deployment
 ## Caller of this workflow should use it as follows:
 ## jobs:
 ##   deployment:
-##     uses: flutter-form-builder-ecosystem/.github/.github/workflows/publish.yml@main [or a recent commit hash / version tag]
-##     # with:
-##     #   working-directory: path/to/sub/directory
+##     uses: flutter-form-builder-ecosystem/.github/.github/workflows/deployment.yml@main
 
 on:
   workflow_call:
