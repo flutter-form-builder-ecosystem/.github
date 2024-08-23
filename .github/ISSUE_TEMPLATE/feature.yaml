@@ -1,6 +1,6 @@
 name: 🚀 Feature request
 description: Suggest new feature or request for this project
-title: "[Field name or General]: <title>"
+title: "<Field name or General>: <title>"
 labels: [enhancement]
 body:
 - type: checkboxes
@@ -20,13 +20,11 @@ body:
 - type: textarea
   attributes:
     label: What you'd like to happen
-    render: Markdown
   validations:
     required: true
 - type: textarea
   attributes:
     label: Alternatives you've considered
-    render: Markdown
   validations:
     required: false
 - type: textarea
