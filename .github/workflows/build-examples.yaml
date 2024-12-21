@@ -1,0 +1,31 @@
+name: Build examples by platform
+
+## Caller of this workflow should use it as follows:
+## jobs:
+##   build:
+##     uses: flutter-form-builder-ecosystem/.github/.github/workflows/build-examples.yaml@main
+
+on:
+  workflow_call:
+  
+jobs:
+  build:
+    name: Build examples by platform
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1 # Use shallow clone for faster checkout
+      - name: Setup Flutter
+        uses: kuhnroyal/flutter-fvm-config-action/setup@v3
+        with:
+          path: '.fvmrc'
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Build examples
+        working-directory: example
+        run: |
+          flutter build appbundle --debug
+          flutter build ios --debug --no-codesign
+          flutter build web
