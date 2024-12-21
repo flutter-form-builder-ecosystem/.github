@@ -9,8 +9,8 @@ on:
   workflow_call:
     inputs:
         codecov-name:
-          required: true
           type: string
+          description: 'Name of the codecov report. If empty, unit test will not be run.'
   
 jobs:
   build:
@@ -36,8 +36,10 @@ jobs:
       - name: Analyze static code
         run: flutter analyze
       - name: Run tests
+        if: ${{ inputs.codecov-name != '' }}
         run: flutter test --no-pub --coverage
       - name: Upload coverage to Codecov
+        if: ${{ inputs.codecov-name != '' }}
         uses: codecov/codecov-action@v5
         with:
           files: coverage/lcov.info
