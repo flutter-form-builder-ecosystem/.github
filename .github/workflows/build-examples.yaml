@@ -9,7 +9,7 @@ on:
   workflow_call:
   
 jobs:
-  build:
+  example:
     name: Build examples by platform
     runs-on: macos-latest
     steps:
