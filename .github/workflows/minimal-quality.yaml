@@ -1,0 +1,46 @@
+name: Build package & run tests
+
+## Caller of this workflow should use it as follows:
+## jobs:
+##   build:
+##     uses: flutter-form-builder-ecosystem/.github/.github/workflows/minimal-quality.yaml@main
+
+on:
+  workflow_call:
+    inputs:
+        codecov-name:
+          required: true
+          type: string
+  
+jobs:
+  build:
+    name: Build package & run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1 # Use shallow clone for faster checkout
+      - name: Check broken links
+        uses: JustinBeckwith/linkinator-action@v1
+        with:
+          paths: "**/*.md"
+      - name: Setup Flutter
+        uses: kuhnroyal/flutter-fvm-config-action/setup@v3
+        with:
+          path: '.fvmrc'
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Format code
+        run: dart format --set-exit-if-changed .
+      - name: Analyze static code
+        run: flutter analyze
+      - name: Run tests
+        run: flutter test --no-pub --coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: coverage/lcov.info
+          name: ${{ inputs.codecov-name }}
+      - name: Check publish warnings
+        run: dart pub publish --dry-run
