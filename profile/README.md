@@ -17,4 +17,4 @@ The Flutter Form Builder Ecosystem has a number of repositories, some important 
 * [form_builder_file_picker](https://github.com/flutter-form-builder-ecosystem/form_builder_file_picker): File picker field widget for FlutterFormBuilder.
 * [form_builder_image_picker](https://github.com/flutter-form-builder-ecosystem/form_builder_image_picker): Images picker field for FlutterFormBuilder. Get images from gallery or camera.
 * [form_builder_phone_field](https://github.com/flutter-form-builder-ecosystem/form_builder_phone_field): International phone number field for FlutterFormBuilder package
-* [form_builder_validators](https://github.com/flutter-form-builder-ecosystem/form_builder_validators): Form Builder Validators set of validators for FlutterFormBuilder. Provides common validators and a way to make your own
+* [form_builder_validators](https://github.com/flutter-form-builder-ecosystem/form_builder_validators): Common validators and a way to make your own. Can use without FlutterFormBuilder
