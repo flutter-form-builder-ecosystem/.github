@@ -2,6 +2,7 @@ name: 🐛 Bug
 description: Something is crashing or not working as intended
 title: "[Field name or General]: <title>"
 labels: [bug]
+type: bug
 body:
 - type: checkboxes
   attributes:
