@@ -2,6 +2,7 @@ name: 🚀 Feature request
 description: Suggest new feature or request for this project
 title: "<Field name or General>: <title>"
 labels: [enhancement]
+type: feature
 body:
 - type: checkboxes
   attributes:
