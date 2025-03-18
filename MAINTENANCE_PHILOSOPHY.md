@@ -1,4 +1,4 @@
-# Maintain philosophy
+# Maintenance philosophy
 
 Here we try to describe the current philosophy for the maintenance of the different Flutter Form Builder Ecosystem packages.
 
