@@ -11,11 +11,18 @@ on:
         codecov-name:
           type: string
           description: 'Name of the codecov report. If empty, unit test will not be run.'
+        enable-fix-tests:
+          type: boolean
+          description: 'Enable run fix tests. By default false'
+          default: false
   
 jobs:
   build:
     name: Build package & run tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        flutter-version: [stable, beta]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,13 +36,17 @@ jobs:
         uses: kuhnroyal/flutter-fvm-config-action/setup@v3
         with:
           path: '.fvmrc'
+          flavor: ${{ matrix.flutter-version }}
       - name: Install dependencies
         run: flutter pub get
       - name: Format code
-        run: dart format --set-exit-if-changed .
+        run: dart format --set-exit-if-changed lib/ test/ example/
       - name: Analyze static code
         run: flutter analyze
-      - name: Run tests
+      - name: Run fixes tests
+        if: ${{ inputs.enable-fix-tests }}
+        run: dart fix --compare-to-golden test_fixes/
+      - name: Run unit and widget tests
         if: ${{ inputs.codecov-name != '' }}
         run: flutter test --no-pub --coverage
       - name: Upload coverage to Codecov
