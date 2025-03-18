@@ -12,15 +12,24 @@ jobs:
   example:
     name: Build examples by platform
     runs-on: macos-latest
+    strategy:
+      matrix:
+        flutter-version: [stable, beta]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 1 # Use shallow clone for faster checkout
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
       - name: Setup Flutter
         uses: kuhnroyal/flutter-fvm-config-action/setup@v3
         with:
           path: '.fvmrc'
+          flavor: ${{ matrix.flutter-version }}
       - name: Install dependencies
         run: flutter pub get
       - name: Build examples
@@ -29,3 +38,4 @@ jobs:
           flutter build appbundle --debug
           flutter build ios --debug --no-codesign
           flutter build web
+          flutter build macos
