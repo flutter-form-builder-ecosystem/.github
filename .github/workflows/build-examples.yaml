@@ -7,11 +7,11 @@ name: Build examples by platform
 
 on:
   workflow_call:
-      inputs:
-        fvm-flavor:
-          type: string
-          description: 'Name of fvm flavor. Tipically a channel name. By default: stable'
-          default: stable
+    inputs:
+      fvm-flavor:
+        type: string
+        description: 'Name of fvm flavor. Tipically a channel name. By default: stable'
+        default: stable
   
 jobs:
   example:
