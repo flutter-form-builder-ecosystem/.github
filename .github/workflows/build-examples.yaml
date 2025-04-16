@@ -7,14 +7,16 @@ name: Build examples by platform
 
 on:
   workflow_call:
+      inputs:
+        fvm-flavor:
+          type: string
+          description: 'Name of fvm flavor. Tipically a channel name. By default: stable'
+          default: stable
   
 jobs:
   example:
     name: Build examples by platform
     runs-on: macos-latest
-    strategy:
-      matrix:
-        flutter-version: [stable, beta]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,7 +31,7 @@ jobs:
         uses: kuhnroyal/flutter-fvm-config-action/setup@v3
         with:
           path: '.fvmrc'
-          flavor: ${{ matrix.flutter-version }}
+          flavor: ${{ inputs.fvm-flavor }}
       - name: Install dependencies
         run: flutter pub get
       - name: Build examples
