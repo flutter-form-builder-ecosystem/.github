@@ -15,14 +15,15 @@ on:
           type: boolean
           description: 'Enable run fix tests. By default false'
           default: false
+        fvm-flavor:
+          type: string
+          description: 'Name of fvm flavor. Tipically a channel name. By default: stable'
+          default: stable
   
 jobs:
   build:
     name: Build package & run tests
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        flutter-version: [stable, beta]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -36,7 +37,7 @@ jobs:
         uses: kuhnroyal/flutter-fvm-config-action/setup@v3
         with:
           path: '.fvmrc'
-          flavor: ${{ matrix.flutter-version }}
+          flavor: ${{ inputs.fvm-flavor }}
       - name: Install dependencies
         run: flutter pub get
       - name: Format code
@@ -50,7 +51,7 @@ jobs:
         if: ${{ inputs.codecov-name != '' }}
         run: flutter test --no-pub --coverage
       - name: Upload coverage to Codecov
-        if: ${{ inputs.codecov-name != '' }}
+        if: ${{ inputs.codecov-name != '' }} && ${{ inputs.fvm-flavor == 'stable' }}
         uses: codecov/codecov-action@v5
         with:
           files: coverage/lcov.info
