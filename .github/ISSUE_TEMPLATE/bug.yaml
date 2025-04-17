@@ -1,6 +1,7 @@
 name: 🐛 Bug
 description: Something is crashing or not working as intended
 title: "[Field name or General]: <title>"
+projects: orgs/flutter-form-builder-ecosystem/projects/9
 labels: [bug]
 type: bug
 body:
