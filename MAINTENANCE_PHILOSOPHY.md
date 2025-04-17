@@ -5,6 +5,8 @@ Here we try to describe the current philosophy for the maintenance of the differ
 This package has been created and maintained by volunteers during their free time. It does not have significant sponsorship ([but we are open to have it](https://opencollective.com/flutter-form-builder-ecosystem)) in order to pay people to dedicate exclusive time.
 For these reasons, it has been decided to create this document that expresses the philosophy of maintaining the packages so that they can continue to exist and provide value to the community.
 
+For ecosystem issues overview, show project [global board](https://github.com/orgs/flutter-form-builder-ecosystem/projects/9/).
+
 ## Minimum compatibility with Flutter
 
 For this package to be meaningful, it must always be updated to be compatible with the latest stable version of Flutter and Dart.
