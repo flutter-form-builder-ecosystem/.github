@@ -14,7 +14,7 @@ If you already setup repository, take a look at the issues and take a stab at th
 
 You don't need to code to help us. If you have a suggestion of a feature, see a bug or a thing that should be improved, [open an issue](https://github.com/flutter-form-builder-ecosystem/<issue-package>/issues/new/choose) on Github.
 
-This is our [maintenance philosophy](https://github.com/flutter-form-builder-ecosystem/.github/blob/main/maintain_philosophy.md).
+This is our [maintenance philosophy](https://github.com/flutter-form-builder-ecosystem/.github/blob/main/MAINTENANCE_PHILOSOPHY.md).
 
 ## Setup development environment
 
