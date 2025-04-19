@@ -4,7 +4,9 @@ This is an organization with all solutions about flutter form builders
 
 ## Get involved!
 
-You can join the fun by following our [contributing guide](https://github.com/flutter-form-builder-ecosystem/.github/blob/main/CONTRIBUTING.md). 🌈 Everyone is welcome!
+You can join the fun by following our [contributing guide](https://github.com/flutter-form-builder-ecosystem/.github/blob/main/CONTRIBUTING.md). Everyone is welcome!
+
+We have a lot things to do. Take a look on our work board: https://github.com/orgs/flutter-form-builder-ecosystem/projects/9
 
 ## Repositories
 
