@@ -40,5 +40,12 @@ jobs:
         run: |
           flutter build appbundle --debug
           flutter build ios --debug --no-codesign
-          flutter build web
+          flutter build web --base-href "/${{ github.event.repository.name }}_website/"
           flutter build macos
+      - name: Archive web artifacts
+        if: ${{ github.ref_type == 'tag' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-app
+          path: example/build/web/
+          retention-days: 1

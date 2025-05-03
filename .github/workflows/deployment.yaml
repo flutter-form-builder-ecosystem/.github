@@ -27,3 +27,34 @@ jobs:
           cache-key: "flutter-:os:-:channel:-:version:"
       - name: Publish package
         run: dart pub publish -v -f
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+  deployment-web:
+    if: ${{ github.ref_type == 'tag' }}
+    name: Deploy example to website
+    runs-on: ubuntu-latest
+    steps:
+    - name: Configure enviroment
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1 # Use shallow clone for faster checkout
+    - uses: actions/download-artifact@v4
+      with:
+        name: web-app
+        path: example/build/web
+    - name: HTML/CSS/JS Minifier
+      uses: docker://devatherock/minify-js:3.1.0
+      with:
+        directory: 'example/build/webb'
+        add_suffix: false
+    - name: Upload to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: example/build/web
+        publish_branch: main
+        commit_message: "Deploying version ${{ github.event.release.tag_name }}"
+        cname: flutterformbuilderecosystem.com
+        external_repository: "flutter-form-builder-ecosystem/${{ github.event.repository.name }}_website"
