@@ -12,6 +12,10 @@ on:
         type: string
         description: 'Name of fvm flavor. Tipically a channel name. By default: stable'
         default: stable
+      enable-generate-l10n:
+        type: boolean
+        description: 'Enable generate l10n. By default false'
+        default: false
   
 jobs:
   example:
@@ -35,6 +39,13 @@ jobs:
           flavor: ${{ inputs.fvm-flavor }}
       - name: Install dependencies
         run: flutter pub get
+      - name: Run l10n
+        if: ${{ inputs.enable-generate-l10n }}
+        run: flutter gen-l10n
+      - name: Run l10n on example
+        if: ${{ inputs.enable-generate-l10n }}
+        run: flutter gen-l10n
+        working-directory: example
       - name: Build examples
         working-directory: example
         run: |

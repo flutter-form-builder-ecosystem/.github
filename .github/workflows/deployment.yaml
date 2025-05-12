@@ -7,6 +7,11 @@ name: Deployment
 
 on:
   workflow_call:
+    inputs:
+      enable-generate-l10n:
+        type: boolean
+        description: 'Enable generate l10n. By default false'
+        default: false
   
 jobs:
   deployment:
@@ -25,6 +30,13 @@ jobs:
         with:
           path: '.fvmrc'
           cache-key: "flutter-:os:-:channel:-:version:"
+      - name: Run l10n
+        if: ${{ inputs.enable-generate-l10n }}
+        run: flutter gen-l10n
+      - name: Run l10n on example
+        if: ${{ inputs.enable-generate-l10n }}
+        run: flutter gen-l10n
+        working-directory: example
       - name: Publish package
         run: dart pub publish -v -f
       - name: Release

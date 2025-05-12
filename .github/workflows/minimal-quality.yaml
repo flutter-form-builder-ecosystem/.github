@@ -19,6 +19,10 @@ on:
           type: string
           description: 'Name of fvm flavor. Tipically a channel name. By default: stable'
           default: stable
+        enable-generate-l10n:
+          type: boolean
+          description: 'Enable generate l10n. By default false'
+          default: false
   
 jobs:
   build:
@@ -41,8 +45,19 @@ jobs:
           flavor: ${{ inputs.fvm-flavor }}
       - name: Install dependencies
         run: flutter pub get
+      - name: Run l10n
+        if: ${{ inputs.enable-generate-l10n }}
+        run: flutter gen-l10n
+      - name: Run l10n on example
+        if: ${{ inputs.enable-generate-l10n }}
+        run: flutter gen-l10n
+        working-directory: example
+      - name: Format code (l10n)
+        if: ${{ inputs.enable-generate-l10n }}
+        run: dart format --set-exit-if-changed $(find . -name "*.dart" ! \( -wholename "./lib/localization/intl/*" -or -wholename "./example/lib/localization/intl/*" \))
       - name: Format code
-        run: dart format --set-exit-if-changed lib/ test/ example/
+        if: ${{ !inputs.enable-generate-l10n }}
+        run: dart format --set-exit-if-changed lib/ example/ test/
       - name: Analyze static code
         run: flutter analyze
       - name: Run fixes tests
