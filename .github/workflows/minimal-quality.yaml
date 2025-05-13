@@ -37,6 +37,7 @@ jobs:
         uses: JustinBeckwith/linkinator-action@v1
         with:
           paths: "**/*.md"
+          verbosity: "DEBUG"
       - name: Setup Flutter
         uses: kuhnroyal/flutter-fvm-config-action/setup@v3
         with:
