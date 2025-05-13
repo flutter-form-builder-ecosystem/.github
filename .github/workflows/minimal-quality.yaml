@@ -38,6 +38,7 @@ jobs:
         with:
           paths: "**/*.md"
           verbosity: DEBUG
+          skip: "https://stackoverflow.com/questions/tagged/flutter-form-builder"
       - name: Setup Flutter
         uses: kuhnroyal/flutter-fvm-config-action/setup@v3
         with:
