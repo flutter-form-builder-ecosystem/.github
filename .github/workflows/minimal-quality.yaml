@@ -34,11 +34,8 @@ jobs:
         with:
           fetch-depth: 1 # Use shallow clone for faster checkout
       - name: Check broken links
-        uses: JustinBeckwith/linkinator-action@v1
-        with:
-          paths: "**/*.md"
-          verbosity: DEBUG
-          skip: "https://stackoverflow.com/questions/tagged/flutter-form-builder"
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
       - name: Setup Flutter
         uses: kuhnroyal/flutter-fvm-config-action/setup@v3
         with:
@@ -69,7 +66,7 @@ jobs:
         if: ${{ inputs.codecov-name != '' }}
         run: flutter test --no-pub --coverage
       - name: Upload coverage to Codecov
-        if: ${{ inputs.codecov-name != '' }} && ${{ inputs.fvm-flavor == 'stable' }}
+        if: ${{ inputs.codecov-name != '' && inputs.fvm-flavor == 'stable' }}
         uses: codecov/codecov-action@v5
         with:
           files: coverage/lcov.info
