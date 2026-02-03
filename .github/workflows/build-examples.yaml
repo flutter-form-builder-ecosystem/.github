@@ -19,7 +19,7 @@ on:
   
 jobs:
   example:
-    name: Build examples for Android, iOS, MacOS and Web
+    name: Build examples for Android, iOS, and MacOS
     runs-on: macos-latest
     steps:
       - name: Checkout repository
@@ -52,14 +52,6 @@ jobs:
           flutter build appbundle --debug
           flutter build ios --debug --no-codesign
           flutter build macos
-          flutter build web --base-href "/${{ github.event.repository.name }}_website/"
-      - name: Archive web artifacts
-        if: ${{ github.ref_type == 'tag' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: web-app
-          path: example/build/web/
-          retention-days: 1
   example-windows:
     name: Build example on Windows
     runs-on: windows-latest
@@ -87,7 +79,7 @@ jobs:
         working-directory: example
         run: flutter build windows
   example-linux:
-    name: Build example on Linux
+    name: Build example on Linux and Web
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -113,6 +105,15 @@ jobs:
         if: ${{ inputs.enable-generate-l10n }}
         run: flutter gen-l10n
         working-directory: example
-      - name: Build example
+      - name: Build examples
         working-directory: example
-        run: flutter build linux
+        run: |
+          flutter build linux
+          flutter build web --base-href "/${{ github.event.repository.name }}_website/"
+      - name: Archive web artifacts
+        if: ${{ github.ref_type == 'tag' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-app
+          path: example/build/web/
+          retention-days: 1
