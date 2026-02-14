@@ -110,10 +110,15 @@ jobs:
         run: |
           flutter build linux
           flutter build web --base-href "/${{ github.event.repository.name }}_website/"
-      - name: Archive web artifacts
+      - name: HTML/CSS/JS Minifier
         if: ${{ github.ref_type == 'tag' }}
-        uses: actions/upload-artifact@v4
+        uses: docker://devatherock/minify-js:3.1.0
         with:
-          name: web-app
+          directory: 'example/build/web'
+          add_suffix: false
+      - name: Upload web artifact
+        if: ${{ github.ref_type == 'tag' }}
+        id: deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
           path: example/build/web/
-          retention-days: 1
