@@ -18,12 +18,12 @@ on:
         default: false
   
 jobs:
-  example:
-    name: Build examples for Android, iOS, and MacOS
+  example-android:
+    name: Build examples for Android
     runs-on: macos-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 1 # Use shallow clone for faster checkout
       - name: Setup Java
@@ -50,6 +50,37 @@ jobs:
         working-directory: example
         run: |
           flutter build appbundle --debug
+  example-apple:
+    name: Build examples for Apple platforms
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 1 # Use shallow clone for faster checkout
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+      - name: Setup Flutter
+        uses: kuhnroyal/flutter-fvm-config-action/setup@v3
+        with:
+          path: '.fvmrc'
+          cache-key: "flutter-:os:-:channel:-:version:"
+          flavor: ${{ inputs.fvm-flavor }}
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Run l10n
+        if: ${{ inputs.enable-generate-l10n }}
+        run: flutter gen-l10n
+      - name: Run l10n on example
+        if: ${{ inputs.enable-generate-l10n }}
+        run: flutter gen-l10n
+        working-directory: example
+      - name: Build examples
+        working-directory: example
+        run: |
           flutter build ios --debug --no-codesign
           flutter build macos
   example-windows:
@@ -57,7 +88,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 1 # Use shallow clone for faster checkout
       - name: Setup Flutter
@@ -83,7 +114,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 1 # Use shallow clone for faster checkout
       - name: Setup Flutter
@@ -119,6 +150,6 @@ jobs:
       - name: Upload web artifact
         if: ${{ github.ref_type == 'tag' }}
         id: deployment
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: example/build/web/
