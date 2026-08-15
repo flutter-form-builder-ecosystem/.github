@@ -29,6 +29,21 @@ jobs:
     name: Build package & run tests
     runs-on: ubuntu-latest
     steps:
+      - uses: peakoss/anti-slop@v0
+        with:
+          max-failures: 4
+          close-pr: false
+          lock-pr: false
+          failure-add-pr-labels: "agent-slop"
+          failure-pr-message: |
+            This PR was flagged by our automated quality checks. If you're a genuine
+            contributor, please reply here and a maintainer will review your PR.
+
+            Common reasons for flagging:
+            - New GitHub account
+            - Unusually high number of repository forks in a 24-hour window
+
+            We appreciate your contribution and apologize if this is a false positive!
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
